@@ -1,6 +1,6 @@
 #importando bibliotecas
 import PySimpleGUI as sg
-import os, PyPDF2
+import os, PyPDF2, threading
 
 #função que cria o layout
 def layout():
@@ -8,7 +8,7 @@ def layout():
     #sg.theme_previewer()
 
     #Configura o tema como verde
-    theme = sg.theme('Green')
+    sg.theme('Green')
 
     #Criação do layout
     '''A definição de layout na biblioteca PySimpleGUI é definido atraves de uma matriz'''
@@ -24,7 +24,7 @@ def merge(path):
     #Tratamento do diretorio
     if os.name == 'nt':
         path = path.replace('\\', '\\\\')
-    #Obejto de mesclagem
+    #Objeto de mesclagem
     merge = PyPDF2.PdfMerger()
     #Lista de arquivos
     list_file = os.listdir(path)
@@ -51,14 +51,18 @@ def main(layout):
                 break
             #Se o evento for igual a folder, chamamos a função margePdf
             if eventos == 'folder':
-                merge(valores['Browse'])
+                #Para poder funcionar scripts em paralelo usamos Thread para criar tasks de processamento
+                threading.Thread(target=merge, args=(valores['Browse']))
                 #Atualiza a tela para aparecer mensagem de sucesso
                 window['mensagem'].update('Arquivos mesclados, com sucesso!')
                 window.refresh()
+                if valores[0] == '':
+                    window['mensagem'].update('Selecione a pasta!')
+                    window.refresh()
+            print(valores)
         #Tratamento de erro
         except:
             window['mensagem'].update('Algo deu errado, tente novamente.')
             window.refresh()
             raise
-
 main(layout())
