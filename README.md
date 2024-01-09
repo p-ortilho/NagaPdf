@@ -1,19 +1,26 @@
 # NagaPdf
 
-Este projeto tem como objetivo o desenvolvimento de uma aplicação que trabalhe na manipulação de arquivos PDF, além do aprendizado com o desenvolvimento de interface gráfica. Em um primeiro momento, a única funcionalidade é de mesclar arquivos PDF em um único arquivo, futuramente novas funcionalidades serão implementadas.
+Este projeto tem como objetivo criar uma aplicação simples que manipule arquivos PDF e os unifique em um único arquivo. Para tornar sua usabilidade mais acessível, foi implementada uma interface gráfica usando PySimpleGUI. O aprendizado adquirido na criação deste código envolveu a manipulação de arquivos em Python, a criação de interfaces gráficas simples e a implementação de threads.
 
 ## Possíveis problemas
-Durante os testes de desenvolvimento, foram encontrados alguns problemas na hora de mesclar os arquivos. Quando o PDF apresenta uma grande quantidade de páginas, é possível que o programa entre em um erro ou pare de funcionar. Nestes casos, a melhor opção é fechar o programa e tentar novamente.
+Pode ocorrer alguns erros na aplicação devido à compatibilidade de bibliotecas e sistemas. Caso ocorra, tente me contatar para solucionar o problema.
 
 ## Instalação
-Você pode criar um executável utilizando a biblioteca PyInstaller. Para isso, basta seguir os passos:
+A instalação pode ser feita de duas maneiras: baixando o arquivo executável ou gerando o próprio executável através do código fonte. Para fazer a instalação através do código fonte, siga as instruções:
 
+1. Primeiro, você deve ter o PyInstaller. Para isso, use o seguinte comando para baixar:
 ~~~
 pip install pyinstaller
 ~~~
 
-Clone o repositório do NagaPdf ou baixe somente o arquivo main.py. Após isso, abra o terminal onde está salvo o arquivo main.py e execute o seguinte comando:
+2. Clone o repositório:
+~~~
+git clone https://github.com/p-ortilho/NagaPdf.git
+~~~
 
+3. Dentro da pasta NagaPdf, abra o terminal e execute o seguinte comando:
 ~~~
 pyinstaller --onefile -w main.py
 ~~~
+
+Com isso, você terá uma pasta chamada dist. Dentro dela, você encontrará um arquivo executável.
